@@ -493,9 +493,10 @@ SendStream.prototype.redirect = function redirect (path) {
   res.statusCode = 301
   res.setHeader('Content-Type', 'text/html; charset=UTF-8')
   res.setHeader('Content-Length', Buffer.byteLength(doc))
-  res.setHeader('Content-Security-Policy', "default-src 'none'")
-  res.setHeader('X-Content-Type-Options', 'nosniff')
+  // res.setHeader('Content-Security-Policy', "default-src 'none'")
+  // res.setHeader('X-Content-Type-Options', 'nosniff')
   res.setHeader('Location', loc)
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.end(doc)
 }
 
@@ -889,6 +890,7 @@ SendStream.prototype.setHeader = function setHeader (path, stat) {
     debug('etag %s', val)
     res.setHeader('ETag', val)
   }
+  res.setHeader("Access-Control-Allow-Origin","*");
 }
 
 /**
